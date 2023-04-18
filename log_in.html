@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>SignUp and Login</title>
+	<link rel="stylesheet" type="text/css" href="css/log_in.css">
+	<link rel="stylesheet" href="text/js" href="js/style.js">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+
+			<form action="">
+				<h1>Crear cuenta</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="social"><i class="fa fa-google"></i></a>
+					<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+				</div>
+				<span>O usa tu email para registrarte</span>
+				<input type="text" name="name" placeholder="Nombre">
+				<input type="email" name="email" placeholder="Correo">
+				<input type="password" name="password" placeholder="Contraseña">
+				<button>Registrarse</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="#">
+				<h1>Iniciar sesion</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="social"><i class="fa fa-google"></i></a>
+					<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+				</div>
+				<span>o usa tu cuenta</span>
+				<input type="email" name="email" placeholder="Correo">
+				<input type="password" name="password" placeholder="Contraseña">
+				<a href="#">¿Olvidaste tu contraseña?</a>
+
+				<button>Iniciar sesion</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>BIENVENIDO!</h1>
+					<p>Para mantenerse conectado con nosotros, inicie sesión con su información personal</p>
+					<button class="ghost" id="signIn">Iniciar sesion</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>HOLA!</h1>
+					<p>Ingresa tus datos y comienza tu viaje con nosotros</p>
+					<button class="ghost" id="signUp">Registrarse</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		type = "text/javascript"
+		const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+	</script>
+
+</body>
+
+</html>
