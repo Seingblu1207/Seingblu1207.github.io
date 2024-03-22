@@ -9,14 +9,14 @@ let limit = 7;
 
 previous.addEventListener("click", () => {
   if (offset != 1) {
-    offset -= 8;
+    offset -= 9;
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
   }
 });
 
 next.addEventListener("click", () => {
-  offset += 8;
+  offset += 9;
   removeChildNodes(pokemonContainer);
   fetchPokemons(offset, limit);
 });
