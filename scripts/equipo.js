@@ -5,6 +5,9 @@ const pokeImgContainer = document.querySelector('[data-poke-img-container]');
 const pokeId = document.querySelector('[data-poke-id]');
 const pokeTypes = document.querySelector('[data-poke-types]');
 const pokeStats = document.querySelector('[data-poke-stats]');
+const cloneButton = document.getElementById('boton_añadir');
+const cloneContainer = document.getElementById('poke-card-team');
+let cloneCounter = 0;
 
 const typeColors = {
     electric: '#FFEA70',
@@ -27,6 +30,14 @@ const typeColors = {
     default: '#2A1A1F',
 };
 
+cloneButton.addEventListener('click', () => {
+    if (cloneCounter < 6) {
+        const clonedCard = pokeCard.cloneNode(true);
+        clonedCard.setAttribute('poke-card-team', ''); // Cambiamos el atributo
+        cloneContainer.appendChild(clonedCard);
+        cloneCounter++;
+    }
+});
 
 const searchPokemon = event => {
     event.preventDefault();
@@ -83,7 +94,7 @@ const renderPokemonStats = stats => {
 
 const renderNotFound = () => {
     pokeName.textContent = 'No encontrado';
-    pokeImg.setAttribute('src', 'poke-shadow.png');
+    pokeImg.setAttribute('src', 'images/poke-shadow.png');
     pokeImg.style.background =  '#fff';
     pokeTypes.innerHTML = '';
     pokeStats.innerHTML = '';

@@ -21,7 +21,7 @@ input {
     background-color: #FFF;
     border: 1px solid black;
 }
-.boton_añadir{
+#boton_añadir{
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -35,6 +35,14 @@ input {
     padding: 10px;
     margin: 0 auto;
     margin-top: 10px;
+}
+
+#poke-card-team {
+    display: flex;
+}
+
+[poke-card-team] {
+    margin-left: 10px; 
 }
 
 .poke-card::before {
