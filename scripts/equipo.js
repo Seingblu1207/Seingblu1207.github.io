@@ -7,7 +7,15 @@ const pokeTypes = document.querySelector('[data-poke-types]');
 const pokeStats = document.querySelector('[data-poke-stats]');
 const cloneButton = document.getElementById('boton_añadir');
 const cloneContainer = document.getElementById('poke-card-team');
-let cloneCounter = 0;
+const clearButton = document.createElement('boton_borrar');
+
+window.addEventListener('load', () => {
+    loadClonedCards();
+});
+
+// Restaurar el contador de clonaciones permitidas al cargar la página
+const maxClones = 6; // Máximo de clonaciones permitidas
+let cloneCounter = Math.min(parseInt(localStorage.getItem('cloneCounter')) || 0, maxClones);
 
 const typeColors = {
     electric: '#FFEA70',
@@ -30,13 +38,51 @@ const typeColors = {
     default: '#2A1A1F',
 };
 
+const loadClonedCards = () => {
+    for (let i = 1; i <= cloneCounter; i++) {
+        const clonedCardData = JSON.parse(localStorage.getItem(`clonedCard${i}`));
+        if (clonedCardData) {
+            const clonedCard = pokeCard.cloneNode(true);
+            clonedCard.setAttribute('poke-card-team', ''); // Cambiamos el atributo
+            pokeName.textContent = clonedCardData.name;
+            pokeImg.setAttribute('src', clonedCardData.image);
+            pokeId.textContent = clonedCardData.id;
+            renderPokemonTypes(clonedCardData.types);
+            cloneContainer.appendChild(clonedCard);
+        }
+    }
+};
+
+
+// Event listener para clonar tarjetas
 cloneButton.addEventListener('click', () => {
     if (cloneCounter < 6) {
         const clonedCard = pokeCard.cloneNode(true);
         clonedCard.setAttribute('poke-card-team', ''); // Cambiamos el atributo
         cloneContainer.appendChild(clonedCard);
         cloneCounter++;
+
+        // Guardar datos de la tarjeta clonada en localStorage
+        const clonedCardData = {
+            name: pokeName.textContent,
+            image: pokeImg.getAttribute('src'),
+            id: pokeId.textContent,
+            types: Array.from(pokeTypes.children).map(type => type.textContent)
+        };
+        localStorage.setItem(`clonedCard${cloneCounter}`, JSON.stringify(clonedCardData));
     }
+});
+
+// Event listener para borrar todas las tarjetas clonadas
+clearButton.addEventListener('click', () => {
+    // Eliminar todas las tarjetas clonadas del DOM
+    cloneContainer.innerHTML = '';
+    // Limpiar el localStorage
+    for (let i = 1; i <= cloneCounter; i++) {
+        localStorage.removeItem(`clonedCard${i}`);
+    }
+    // Restablecer el contador
+    cloneCounter = 0;
 });
 
 const searchPokemon = event => {
