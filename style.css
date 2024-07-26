@@ -34,12 +34,12 @@ body {
 .main {
     color: #ffffff;
     width: 100%;
+    height: auto;
 }
 
 .mitad {
     margin: 0.5%;
     width: 50%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,6 +64,15 @@ body {
     text-align: center;
     /* Alineación del texto */
     overflow: hidden;
+}
+
+.nlist{
+
+    background-color: rgba(119, 0, 255, 0.2);
+    background-blend-mode: overlay;
+    padding: 10;
+    width: 120%;
+
 }
 
 .contenido {
